@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>WebCode.How API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;,&quot;xml&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="xml">xml</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -228,214 +226,699 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#articles" class="toc-h1 toc-link" data-title="Articles">Articles</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
+                    <a href="#get-all-articles" class="toc-h2 toc-link" data-title="Articles">Get All Articles</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
+                    <a href="#get-an-article" class="toc-h2 toc-link" data-title="Articles">Get An Article</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#search" class="toc-h1 toc-link" data-title="Search">Search</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                    <a href="#query-webcode-how" class="toc-h2 toc-link" data-title="Search">Query WebCode.How</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#client-errors" class="toc-h2 toc-link" data-title="Errors">Client Errors</a>
+                  </li>
+                  <li>
+                    <a href="#server-errors" class="toc-h2 toc-link" data-title="Errors">Server Errors</a>
+                  </li>
+              </ul>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://webcode.how' target='blank'>Check out WebCode.How</a></li>
+            <li><a href='https://github.com/tripit/slate' target='blank'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the WebCode.How API! You can use our API to access our articles and site metrics that are available publicly.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell, Ruby, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<p>This API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. We at WebCode.How send a giant thank you to the team that built this wonderful tool.</p>
+<h1 id='authentication'>Authentication</h1><pre class="highlight ruby tab-ruby"><code><span class="c1"># If you can, please stay below</span>
+<span class="c1"># 15 requests / minute to keep</span>
+<span class="c1"># our servers happy, though.</span>
 </code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>WebCode.How&#39;s public API requires no authentication and has no set rate limits.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<p>Abuse of the API will result in your IP being blocked. Please do NOT perform so many requests that it looks like abuse.</p>
+<h1 id='articles'>Articles</h1><h2 id='get-all-articles'>Get All Articles</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In 2008, Google officially released autocomplete and forever..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"demoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://demo.webcode.how/ajax-autocomplete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to make a simple AJAX-loading dynamic..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"how-to-make-an-ajax-autocomplete-for-a-search-input"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascript"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How To Make An Ajax Autocomplete For A Search Input"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dean Papastrat"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pictureUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://cdn.webcode.how/3ijofscior.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"browser_support"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"browsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"minimumVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chrome"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"compatibilityTableUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://caniuse.com/input"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"demoRepository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ajax-autocomplete"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/WebCode-How/ajax-autocomplete"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"furtherReadingArticles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to make native dropdowns using the new HTML5 datalist element."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creating Autocomplete Dropdowns with the Datalist Element"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"websiteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Treehouse Blog"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"prerequisiteArticles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to use the HTML input element."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webcode.how/how-to-make-an-html-input-element"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How to Make an Input Element"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"websiteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebCode.How"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"paging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.webcode.how/articles?limit=25&amp;until=1364849754"</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.webcode.how/articles?limit=25&amp;since=1364587774"</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+  <span class="nt">&lt;article&gt;</span>
+    <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;content&gt;</span>In 2008, Google officially released autocomplete and forever...<span class="nt">&lt;/content&gt;</span>
+    <span class="nt">&lt;demoUrl&gt;</span>http://demo.webcode.how/ajax-autocomplete<span class="nt">&lt;/demoUrl&gt;</span>
+    <span class="nt">&lt;excerpt&gt;</span>Learn how to make a simple AJAX-loading dynamic...<span class="nt">&lt;/excerpt&gt;</span>
+    <span class="nt">&lt;slug&gt;</span>how-to-make-an-ajax-autocomplete-for-a-search-input<span class="nt">&lt;/slug&gt;</span>
+    <span class="nt">&lt;syntax&gt;</span>javascript<span class="nt">&lt;/syntax&gt;</span>
+    <span class="nt">&lt;title&gt;</span>How To Make An Ajax Autocomplete For A Search Input<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;author&gt;</span>
+      <span class="nt">&lt;id&gt;</span>3<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Dean Papastrat<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;pictureUrl&gt;</span>http://cdn.webcode.how/3ijofscior.jpg<span class="nt">&lt;/pictureUrl&gt;</span>
+    <span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;browserSupport&gt;</span>
+      <span class="nt">&lt;browsers&gt;</span>
+        <span class="nt">&lt;browser&gt;</span>
+          <span class="nt">&lt;minimumVersion&gt;</span>21<span class="nt">&lt;/minimumVersion&gt;</span>
+          <span class="nt">&lt;type&gt;</span>chrome<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;/browser&gt;</span>
+      <span class="nt">&lt;/browsers&gt;</span>
+      <span class="nt">&lt;compatibilityTableUrl&gt;</span>http://caniuse.com/input<span class="nt">&lt;/compatibilityTableUrl&gt;</span>
+    <span class="nt">&lt;/browserSupport&gt;</span>
+    <span class="nt">&lt;demoRepository&gt;</span>
+      <span class="nt">&lt;downloadUrl&gt;</span>https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip<span class="nt">&lt;/downloadUrl&gt;</span>
+      <span class="nt">&lt;host&gt;</span>github<span class="nt">&lt;/host&gt;</span>
+      <span class="nt">&lt;name&gt;</span>ajax-autocomplete<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;websiteUrl&gt;</span>https://github.com/WebCode-How/ajax-autocomplete<span class="nt">&lt;/websiteUrl&gt;</span>
+    <span class="nt">&lt;/demoRepository&gt;</span>
+    <span class="nt">&lt;furtherReadingArticles&gt;</span>
+      <span class="nt">&lt;condensedArticle&gt;</span>
+        <span class="nt">&lt;excerpt&gt;</span>Learn how to make native dropdowns using the new HTML5 datalist element.<span class="nt">&lt;/excerpt&gt;</span>
+        <span class="nt">&lt;permalink&gt;</span>http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element<span class="nt">&lt;/permalink&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Creating Autocomplete Dropdowns with the Datalist Element<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;websiteName&gt;</span>Treehouse Blog<span class="nt">&lt;/websiteName&gt;</span>
+      <span class="nt">&lt;/condensedArticle&gt;</span>
+    <span class="nt">&lt;/furtherReadingArticles&gt;</span>
+    <span class="nt">&lt;prerequisiteArticles&gt;</span>
+      <span class="nt">&lt;condensedArticle&gt;</span>
+        <span class="nt">&lt;excerpt&gt;</span>Learn how to use the HTML input element.<span class="nt">&lt;/excerpt&gt;</span>
+        <span class="nt">&lt;permalink&gt;</span>http://webcode.how/how-to-make-an-html-input-element<span class="nt">&lt;/permalink&gt;</span>
+        <span class="nt">&lt;title&gt;</span>How to Make an Input Element<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;websiteName&gt;</span>WebCode.How<span class="nt">&lt;/websiteName&gt;</span>
+      <span class="nt">&lt;/condensedArticle&gt;</span>
+    <span class="nt">&lt;/prerequisiteArticles&gt;</span>
+  <span class="nt">&lt;/article&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;paging&gt;</span>
+  <span class="nt">&lt;next&gt;</span>http://api.webcode.how/articles?limit=25<span class="err">&amp;</span>until=1364849754<span class="nt">&lt;/next&gt;</span>
+  <span class="nt">&lt;previous&gt;</span>http://api.webcode.how/articles?limit=25<span class="err">&amp;</span>since=1364587774<span class="nt">&lt;/previous&gt;</span>
+<span class="nt">&lt;/paging&gt;</span>
+</code></pre>
+<p>This endpoint retrieves all articles, ordered by the date they were published.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET http://api.webcode.how/articles</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>format</td>
+<td>String</td>
+<td>json</td>
+<td>Format to return; one of: [&quot;json&quot;, &quot;xml&quot;]</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>limit</td>
+<td>Integer</td>
+<td>25</td>
+<td>Number of articles to return, from 1 to 50</td>
+</tr>
+<tr>
+<td>since</td>
+<td>Unix Timestamp</td>
+<td>null</td>
+<td>Unix timestamp all articles returned must be published after</td>
+</tr>
+<tr>
+<td>until</td>
+<td>Unix Timestamp</td>
+<td>null</td>
+<td>Unix timestamp all articles returned must be published before</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='response-model-cursoreddata-article'>Response Model [CursoredData[Article]]</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>data</td>
+<td>Array[Article]</td>
+<td>Array of Article objects; see  <code>/articles/ID or Slug</code>. Empty if no articles match.</td>
+</tr>
+<tr>
+<td>paging</td>
+<td>Paging</td>
+<td>Contains metadata for paging over articles</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+<h4 id='paging-object'>Paging Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>next</td>
+<td>String[URI]</td>
+<td>Link to next page of articles. Null if no next page.</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String[URI]</td>
+<td>Link to previous page of articles. Null if no previous page.</td>
+</tr>
+</tbody></table>
+<h2 id='get-an-article'>Get An Article</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In 2008, Google officially released autocomplete and forever..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"demoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://demo.webcode.how/ajax-autocomplete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to make a simple AJAX-loading dynamic..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webcode.how/how-to-make-an-ajax-autocomplete-for-a-search-input"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"how-to-make-an-ajax-autocomplete-for-a-search-input"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascript"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How To Make An Ajax Autocomplete For A Search Input"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dean Papastrat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pictureUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://cdn.webcode.how/3ijofscior.jpg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"browserSupport"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"browsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"minimumVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chrome"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"compatibilityTableUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://caniuse.com/input"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"demoRepository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ajax-autocomplete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/WebCode-How/ajax-autocomplete"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"furtherReadingArticles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to make native dropdowns using the new HTML5 datalist element."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creating Autocomplete Dropdowns with the Datalist Element"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"websiteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Treehouse Blog"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"prerequisiteArticles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to use the HTML input element."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webcode.how/how-to-make-an-html-input-element"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How to Make an Input Element"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"websiteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebCode.How"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;content&gt;</span>In 2008, Google officially released autocomplete and forever...<span class="nt">&lt;/content&gt;</span>
+  <span class="nt">&lt;demoUrl&gt;</span>http://demo.webcode.how/ajax-autocomplete<span class="nt">&lt;/demoUrl&gt;</span>
+  <span class="nt">&lt;excerpt&gt;</span>Learn how to make a simple AJAX-loading dynamic...<span class="nt">&lt;/excerpt&gt;</span>
+  <span class="nt">&lt;slug&gt;</span>how-to-make-an-ajax-autocomplete-for-a-search-input<span class="nt">&lt;/slug&gt;</span>
+  <span class="nt">&lt;syntax&gt;</span>javascript<span class="nt">&lt;/syntax&gt;</span>
+  <span class="nt">&lt;title&gt;</span>How To Make An Ajax Autocomplete For A Search Input<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;author&gt;</span>
+    <span class="nt">&lt;id&gt;</span>3<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Dean Papastrat<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;pictureUrl&gt;</span>http://cdn.webcode.how/3ijofscior.jpg<span class="nt">&lt;/pictureUrl&gt;</span>
+  <span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;browserSupport&gt;</span>
+    <span class="nt">&lt;browsers&gt;</span>
+      <span class="nt">&lt;browser&gt;</span>
+        <span class="nt">&lt;minimumVersion&gt;</span>21<span class="nt">&lt;/minimumVersion&gt;</span>
+        <span class="nt">&lt;type&gt;</span>chrome<span class="nt">&lt;/type&gt;</span>
+      <span class="nt">&lt;/browser&gt;</span>
+    <span class="nt">&lt;/browsers&gt;</span>
+    <span class="nt">&lt;compatibilityTableUrl&gt;</span>http://caniuse.com/input<span class="nt">&lt;/compatibilityTableUrl&gt;</span>
+  <span class="nt">&lt;/browserSupport&gt;</span>
+  <span class="nt">&lt;demoRepository&gt;</span>
+    <span class="nt">&lt;downloadUrl&gt;</span>https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip<span class="nt">&lt;/downloadUrl&gt;</span>
+    <span class="nt">&lt;host&gt;</span>github<span class="nt">&lt;/host&gt;</span>
+    <span class="nt">&lt;name&gt;</span>ajax-autocomplete<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;websiteUrl&gt;</span>https://github.com/WebCode-How/ajax-autocomplete<span class="nt">&lt;/websiteUrl&gt;</span>
+  <span class="nt">&lt;/demoRepository&gt;</span>
+  <span class="nt">&lt;furtherReadingArticles&gt;</span>
+    <span class="nt">&lt;condensedArticle&gt;</span>
+      <span class="nt">&lt;excerpt&gt;</span>Learn how to make native dropdowns using the new HTML5 datalist element.<span class="nt">&lt;/excerpt&gt;</span>
+      <span class="nt">&lt;permalink&gt;</span>http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element<span class="nt">&lt;/permalink&gt;</span>
+      <span class="nt">&lt;title&gt;</span>Creating Autocomplete Dropdowns with the Datalist Element<span class="nt">&lt;/title&gt;</span>
+      <span class="nt">&lt;websiteName&gt;</span>Treehouse Blog<span class="nt">&lt;/websiteName&gt;</span>
+    <span class="nt">&lt;/condensedArticle&gt;</span>
+  <span class="nt">&lt;/furtherReadingArticles&gt;</span>
+  <span class="nt">&lt;prerequisiteArticles&gt;</span>
+    <span class="nt">&lt;condensedArticle&gt;</span>
+      <span class="nt">&lt;excerpt&gt;</span>Learn how to use the HTML input element.<span class="nt">&lt;/excerpt&gt;</span>
+      <span class="nt">&lt;permalink&gt;</span>http://webcode.how/how-to-make-an-html-input-element<span class="nt">&lt;/permalink&gt;</span>
+      <span class="nt">&lt;title&gt;</span>How to Make an Input Element<span class="nt">&lt;/title&gt;</span>
+      <span class="nt">&lt;websiteName&gt;</span>WebCode.How<span class="nt">&lt;/websiteName&gt;</span>
+    <span class="nt">&lt;/condensedArticle&gt;</span>
+  <span class="nt">&lt;/prerequisiteArticles&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</code></pre>
+<p>This endpoint retrieves an article.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://api.webcode.how/articles/&lt;id|slug&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>id</td>
+<td>Integer</td>
+<td>The ID of the article to retrieve</td>
+<td></td>
+</tr>
+<tr>
+<td>format</td>
+<td>String</td>
+<td>json</td>
+<td>Format to return; one of: [&quot;json&quot;, &quot;xml&quot;]</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>The Slug of the article to retrieve</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-model-article'>Response Model [Article]</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique integer representing article</td>
+</tr>
+<tr>
+<td>content</td>
+<td>String[HTML]</td>
+<td>Tutorial content of article</td>
+</tr>
+<tr>
+<td>demoUrl</td>
+<td>String[URI]</td>
+<td>Link to demo page for article</td>
+</tr>
+<tr>
+<td>excerpt</td>
+<td>String</td>
+<td>Under 255 character summary of article</td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>String[URI]</td>
+<td>Link to article</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>String</td>
+<td>SEO-optimized unique identifier for article, used in permalink</td>
+</tr>
+<tr>
+<td>syntax</td>
+<td>String</td>
+<td>Language the article was written for; One of: [&quot;javascript&quot;, &quot;coffeescript&quot;, &quot;typescript&quot;, &quot;jquery&quot;]</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Name of article</td>
+</tr>
+<tr>
+<td>author</td>
+<td>Author</td>
+<td>Object representing who wrote the article</td>
+</tr>
+<tr>
+<td>browserSupport</td>
+<td>BrowserSupport</td>
+<td>Object representing support of browser features used in article</td>
+</tr>
+<tr>
+<td>demoRepository</td>
+<td>Repository</td>
+<td>Object representing the repository with sample code for article</td>
+</tr>
+<tr>
+<td>furtherReadingArticles</td>
+<td>Array[CondensedArticle]</td>
+<td>Array of articles to read after finishing article</td>
+</tr>
+<tr>
+<td>prerequisiteArticles</td>
+<td>Array[CondensedArticle]</td>
+<td>Array of articles indicating prior knowledge needed</td>
+</tr>
+</tbody></table>
+<h4 id='author-object'>Author Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique integer representing author</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of author</td>
+</tr>
+<tr>
+<td>pictureUrl</td>
+<td>String[URI]</td>
+<td>Link to a picture of author</td>
+</tr>
+</tbody></table>
+<h4 id='browser-object'>Browser Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>minimumVersion</td>
+<td>String</td>
+<td>Min. browser version for support of article&#39;s syntax</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Unique identifier representing browser</td>
+</tr>
+</tbody></table>
+<h4 id='browsersupport-object'>BrowserSupport Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>browsers</td>
+<td>Array[Browser]</td>
+<td>Array of objects representing browsers supported by tutorial</td>
+</tr>
+<tr>
+<td>compatibilityTableUrl</td>
+<td>String[URI]</td>
+<td>Link to chart showing support of features used</td>
+</tr>
+</tbody></table>
+<h4 id='condensedarticle-object'>CondensedArticle Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>excerpt</td>
+<td>String</td>
+<td>Under 255 character summary of article</td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>String[URI]</td>
+<td>Link to article</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Name of article</td>
+</tr>
+<tr>
+<td>websiteName</td>
+<td>String</td>
+<td>Name of the website the article is on</td>
+</tr>
+</tbody></table>
+<h4 id='repository-object'>Repository Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>downloadUrl</td>
+<td>String[URI]</td>
+<td>Link to download the repository</td>
+</tr>
+<tr>
+<td>host</td>
+<td>String</td>
+<td>Name of the repository host</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of repository</td>
+</tr>
+<tr>
+<td>websiteUrl</td>
+<td>String[URI]</td>
+<td>Link to the webpage for the repository</td>
+</tr>
+</tbody></table>
+<h1 id='search'>Search</h1><h2 id='query-webcode-how'>Query WebCode.How</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn how to make a simple AJAX-loading dynamic..."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permalink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webcode.how/how-to-make-an-autocomplete-for-a-search-input"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How To Make An Ajax Autocomplete For A Search Input"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"paging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.webcode.how/search?q=myquery&amp;limit=25&amp;before=10"</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.webcode.how/search?q=myquery&amp;limit=25&amp;after=20"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+  <span class="nt">&lt;searchItem&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Learn how to make a simple AJAX-loading dynamic...<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;permalink&gt;</span>http://webcode.how/how-to-make-an-autocomplete-for-a-search-input<span class="nt">&lt;/permalink&gt;</span>
+    <span class="nt">&lt;title&gt;</span>How To Make An Ajax Autocomplete For A Search Input<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;type&gt;</span>article<span class="nt">&lt;/type&gt;</span>
+  <span class="nt">&lt;/searchItem&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;paging&gt;</span>
+  <span class="nt">&lt;next&gt;</span>http://api.webcode.how/search?q=myquery<span class="err">&amp;</span>limit=25<span class="err">&amp;</span>before=10<span class="nt">&lt;/next&gt;</span>
+  <span class="nt">&lt;previous&gt;</span>http://api.webcode.how/search?q=myquery<span class="err">&amp;</span>limit=25<span class="err">&amp;</span>after=20<span class="nt">&lt;/previous&gt;</span>
+<span class="nt">&lt;/paging&gt;</span>
+</code></pre>
+<p>This endpoint searches WebCode.How&#39;s articles, ordered by relevance. Author support is roadmapped.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://api.webcode.how/search?q=&lt;Slug|ID&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>String</td>
+<td>json</td>
+<td>Format to return; one of: [&quot;json&quot;, &quot;xml&quot;]</td>
+</tr>
+<tr>
+<td>q</td>
+<td>String</td>
+<td>Search string to query for</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-model'>Response Model</h3><h3 id='response-model-cursoreddata-searchitem'>Response Model [CursoredData[SearchItem]]</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>Array[SearchItem]</td>
+<td>Array of Search Items</td>
+</tr>
+<tr>
+<td>paging</td>
+<td>Paging</td>
+<td>Contains metadata for paging over articles</td>
+</tr>
+</tbody></table>
+<h4 id='paging-object'>Paging Object</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>next</td>
+<td>String[URI]</td>
+<td>Link to next page of articles. Null if no next page.</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String[URI]</td>
+<td>Link to previous page of articles. Null if no previous page.</td>
+</tr>
+</tbody></table>
+<h4 id='search-item'>Search Item</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Under 255 character description of search item, such as a bio or excerpt</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Under 255 character title of search item</td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>String[URI]</td>
+<td>Link to the full resource for search item</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of result; One of: [&quot;author&quot;, &quot;article&quot;]</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+<p>The WebCode.How API uses the following error codes to give context to why requests failed.</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Please review the codes and try to resolve issues on your own before contacting us. You can
+check our status page at <a href="http://status.webcode.how">status.webcode.how</a> to see if there&#39;s
+a larger issue affecting multiple clients.</p>
+
+<p>Our status page checks all of our endpoints, so you can see if a particular endpoint is having
+issues.</p>
+<h2 id='client-errors'>Client Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Request: Your request is invalid"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="nt">&lt;error&gt;</span>
+  <span class="nt">&lt;code&gt;</span>400<span class="nt">&lt;/code&gt;</span>
+  <span class="nt">&lt;message&gt;</span>Bad Request: Your request is invalid<span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/error&gt;</span>
+</code></pre>
+<p>If you get a 400-series error code, it&#39;s an issue on your end. Please review documentation on
+the endpoints you&#39;re using as well as your own code before filing an issue.</p>
 
 <table><thead>
 <tr>
@@ -445,57 +928,89 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong</td>
+<td>Bad Request -- Your request is invalid.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only</td>
+<td>Forbidden -- You are not allowed to access the resource.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found</td>
+<td>Not Found -- Requested object could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
+<td>Method Not Allowed</td>
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers</td>
+<td>Gone -- Request object has been deleted.</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Type -- Request not available in the given format.</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&#39;m a teapot</td>
+<td>I&#39;m a Teapot -- Pour yourself some tea over at <code>/teapot</code>.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You have made too many requests in too short of a time.</td>
 </tr>
+<tr>
+<td>451</td>
+<td>Blocked for Legal Reasons -- Request object has been denied because of legal issues.</td>
+</tr>
+</tbody></table>
+<h2 id='server-errors'>Server Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal Server Error: Could not respond"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
+<span class="nt">&lt;error&gt;</span>
+  <span class="nt">&lt;code&gt;</span>500<span class="nt">&lt;/code&gt;</span>
+  <span class="nt">&lt;message&gt;</span>Internal Server Error: Could not respond<span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/error&gt;</span>
+</code></pre>
+<p>If you get a 500-series error code, it&#39;s an issue on our end. We review erorr logs frequently
+and will attempt to resolve them as fast as possible.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>500</td>
 <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
+<td>501</td>
+<td>Not Implemented -- This endpoint has not been implemented. Submit a request to info@webcode.how for more info.</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway -- Our load balancers are having issues. Please try again with exponential backoff.</td>
+</tr>
+<tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Service Unavailable -- Our servers are down. Please try again with exponential backoff.</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Timeout -- Our servers are having a hard time keeping up with load. Please try again with exponential backoff.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="xml">xml</a>
           </div>
       </div>
     </div>
