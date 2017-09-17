@@ -2,9 +2,8 @@
 title: WebCode.How API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - javascript
+  - json
+  - xml
 
 toc_footers:
   - <a href='http://webcode.how' target='blank'>Check out WebCode.How</a>
@@ -12,6 +11,7 @@ toc_footers:
 
 includes:
   - articles
+  - search
   - errors
 
 search: true
@@ -26,6 +26,12 @@ We have language bindings in Shell, Ruby, and JavaScript! You can view code exam
 This API documentation page was created with [Slate](https://github.com/tripit/slate). We at WebCode.How send a giant thank you to the team that built this wonderful tool.
 
 # Authentication
+
+```ruby
+# If you can, please stay below
+# 15 requests / minute to keep
+# our servers happy, though.
+```
 
 WebCode.How's public API requires no authentication and has no set rate limits.
 

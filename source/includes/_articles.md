@@ -2,24 +2,6 @@
 
 ## Get All Articles
 
-```ruby
-require 'webcode-api'
-
-articles = webcode.articles
-```
-
-```shell
-curl "http://api.webcode.how/articles"
-```
-
-```javascript
-const webcode = require('webcode-api');
-
-let articles = webcode.articles.get();
-```
-
-> The above command returns JSON structured like this:
-
 ```json
 {
   "data": [
@@ -47,23 +29,24 @@ let articles = webcode.articles.get();
       },
       "demoRepository": {
         "downloadUrl": "https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip",
+        "host": "github",
         "name": "ajax-autocomplete",
         "websiteUrl": "https://github.com/WebCode-How/ajax-autocomplete"
       },
-      "prerequisiteArticles": [
-        {
-          "excerpt": "Learn how to use the HTML input element.",
-          "permalink": "http://webcode.how/how-to-make-an-html-input-element",
-          "title": "How to Make an Input Element",
-          "websiteName": "WebCode.How"
-        }
-      ],
       "furtherReadingArticles": [
         {
           "excerpt": "Learn how to make native dropdowns using the new HTML5 datalist element.",
           "permalink": "http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element",
           "title": "Creating Autocomplete Dropdowns with the Datalist Element",
           "websiteName": "Treehouse Blog"
+        }
+      ],
+      "prerequisiteArticles": [
+        {
+          "excerpt": "Learn how to use the HTML input element.",
+          "permalink": "http://webcode.how/how-to-make-an-html-input-element",
+          "title": "How to Make an Input Element",
+          "websiteName": "WebCode.How"
         }
       ]
     }
@@ -73,6 +56,61 @@ let articles = webcode.articles.get();
     "previous": "http://api.webcode.how/articles?limit=25&since=1364587774"
   }
 }
+```
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <article>
+    <id>1</id>
+    <content>In 2008, Google officially released autocomplete and forever...</content>
+    <demoUrl>http://demo.webcode.how/ajax-autocomplete</demoUrl>
+    <excerpt>Learn how to make a simple AJAX-loading dynamic...</excerpt>
+    <slug>how-to-make-an-ajax-autocomplete-for-a-search-input</slug>
+    <syntax>javascript</syntax>
+    <title>How To Make An Ajax Autocomplete For A Search Input</title>
+    <author>
+      <id>3</id>
+      <name>Dean Papastrat</name>
+      <pictureUrl>http://cdn.webcode.how/3ijofscior.jpg</pictureUrl>
+    </author>
+    <browserSupport>
+      <browsers>
+        <browser>
+          <minimumVersion>21</minimumVersion>
+          <type>chrome</type>
+        </browser>
+      </browsers>
+      <compatibilityTableUrl>http://caniuse.com/input</compatibilityTableUrl>
+    </browserSupport>
+    <demoRepository>
+      <downloadUrl>https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip</downloadUrl>
+      <host>github</host>
+      <name>ajax-autocomplete</name>
+      <websiteUrl>https://github.com/WebCode-How/ajax-autocomplete</websiteUrl>
+    </demoRepository>
+    <furtherReadingArticles>
+      <condensedArticle>
+        <excerpt>Learn how to make native dropdowns using the new HTML5 datalist element.</excerpt>
+        <permalink>http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element</permalink>
+        <title>Creating Autocomplete Dropdowns with the Datalist Element</title>
+        <websiteName>Treehouse Blog</websiteName>
+      </condensedArticle>
+    </furtherReadingArticles>
+    <prerequisiteArticles>
+      <condensedArticle>
+        <excerpt>Learn how to use the HTML input element.</excerpt>
+        <permalink>http://webcode.how/how-to-make-an-html-input-element</permalink>
+        <title>How to Make an Input Element</title>
+        <websiteName>WebCode.How</websiteName>
+      </condensedArticle>
+    </prerequisiteArticles>
+  </article>
+</data>
+<paging>
+  <next>http://api.webcode.how/articles?limit=25&until=1364849754</next>
+  <previous>http://api.webcode.how/articles?limit=25&since=1364587774</previous>
+</paging>
 ```
 
 This endpoint retrieves all articles, ordered by the date they were published.
@@ -85,6 +123,7 @@ This endpoint retrieves all articles, ordered by the date they were published.
 
 Parameter | Type | Default | Description
 --------- | ---- | ------- | -----------
+format | String | json | Format to return; one of: ["json", "xml"]
 limit | Integer | 25 | Number of articles to return, from 1 to 50
 since | Unix Timestamp | null | Unix timestamp all articles returned must be published after
 until | Unix Timestamp | null | Unix timestamp all articles returned must be published before
@@ -104,36 +143,6 @@ next | String[URI] | Link to next page of articles. Null if no next page.
 previous | String[URI] | Link to previous page of articles. Null if no previous page.
 
 ## Get An Article
-
-```ruby
-require 'webcode-api'
-
-By ID:
-webcode.articles(1)
-
-By Slug:
-webcode.articles("how-to-make-an-autocomplete-for-a-search-input")
-```
-
-```shell
-# By ID:
-curl "http://api.webcode.how/articles/1"
-
-# By Slug:
-curl "http://api.webcode.how/articles/how-to-make-an-autocomplete-for-a-search-input"
-```
-
-```javascript
-const webcode = require('webcode-api');
-
-# By ID:
-let article = webcode.articles.get(1);
-
-# By Slug:
-let article = webcode.articles.get("how-to-make-an-autocomplete-for-a-search-input");
-```
-
-> The above command returns JSON structured like this:
 
 ```json
 {
@@ -184,18 +193,68 @@ let article = webcode.articles.get("how-to-make-an-autocomplete-for-a-search-inp
 }
 ```
 
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<article>
+  <id>1</id>
+  <content>In 2008, Google officially released autocomplete and forever...</content>
+  <demoUrl>http://demo.webcode.how/ajax-autocomplete</demoUrl>
+  <excerpt>Learn how to make a simple AJAX-loading dynamic...</excerpt>
+  <slug>how-to-make-an-ajax-autocomplete-for-a-search-input</slug>
+  <syntax>javascript</syntax>
+  <title>How To Make An Ajax Autocomplete For A Search Input</title>
+  <author>
+    <id>3</id>
+    <name>Dean Papastrat</name>
+    <pictureUrl>http://cdn.webcode.how/3ijofscior.jpg</pictureUrl>
+  </author>
+  <browserSupport>
+    <browsers>
+      <browser>
+        <minimumVersion>21</minimumVersion>
+        <type>chrome</type>
+      </browser>
+    </browsers>
+    <compatibilityTableUrl>http://caniuse.com/input</compatibilityTableUrl>
+  </browserSupport>
+  <demoRepository>
+    <downloadUrl>https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip</downloadUrl>
+    <host>github</host>
+    <name>ajax-autocomplete</name>
+    <websiteUrl>https://github.com/WebCode-How/ajax-autocomplete</websiteUrl>
+  </demoRepository>
+  <furtherReadingArticles>
+    <condensedArticle>
+      <excerpt>Learn how to make native dropdowns using the new HTML5 datalist element.</excerpt>
+      <permalink>http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element</permalink>
+      <title>Creating Autocomplete Dropdowns with the Datalist Element</title>
+      <websiteName>Treehouse Blog</websiteName>
+    </condensedArticle>
+  </furtherReadingArticles>
+  <prerequisiteArticles>
+    <condensedArticle>
+      <excerpt>Learn how to use the HTML input element.</excerpt>
+      <permalink>http://webcode.how/how-to-make-an-html-input-element</permalink>
+      <title>How to Make an Input Element</title>
+      <websiteName>WebCode.How</websiteName>
+    </condensedArticle>
+  </prerequisiteArticles>
+</article>
+```
+
 This endpoint retrieves an article.
 
 ### HTTP Request
 
-`GET http://api.webcode.how/articles/<Slug|ID>`
+`GET http://api.webcode.how/articles/<id|slug>`
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ---- | -----------
-ID | Integer | The ID of the article to retrieve
-Slug | String | The Slug of the article to retrieve
+Parameter | Type | Default | Description
+--------- | ---- | ------- | -----------
+id | Integer | The ID of the article to retrieve
+format | String | json | Format to return; one of: ["json", "xml"]
+slug | String | The Slug of the article to retrieve
 
 ### Response Model \[Article\]
 
@@ -245,3 +304,12 @@ excerpt | String | Under 255 character summary of article
 permalink | String[URI] | Link to article
 title | String | Name of article
 websiteName | String | Name of the website the article is on
+
+#### Repository Object
+
+Field | Type | Description
+----- | ---- | -----------
+downloadUrl | String[URI] | Link to download the repository
+host | String | Name of the repository host
+name | String | Name of repository
+websiteUrl | String[URI] | Link to the webpage for the repository
