@@ -29,3 +29,81 @@ This API documentation page was created with [Slate](https://github.com/tripit/s
 WebCode.How's public API requires no authentication and has no set rate limits.
 
 Abuse of the API will result in your IP being blocked. Please do NOT perform so many requests that it looks like abuse.
+
+# Articles
+
+## Get All Articles
+
+```ruby
+require 'webcode-api'
+
+articles = webcode.articles
+```
+
+```shell
+curl "http://api.webcode.how/articles"
+```
+
+```javascript
+const webcode = require('webcode-api');
+
+let articles = webcode.articles.get();
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "browser_support": {
+      "browsers": [
+        {
+          "minimum_version": "21",
+          "type": "chrome"
+        }
+      ],
+      "compatibility_table_url": "http://caniuse.com/input",
+    },
+    "demo_repository": {
+      "download_url": "https://github.com/WebCode-How/ajax-autocomplete/archive/master.zip",
+      "name": "ajax-autocomplete",
+      "website_url": "https://github.com/WebCode-How/ajax-autocomplete"
+    },
+    "demo_url": "http://demo.webcode.how/ajax-autocomplete",
+    "slug": "how-to-make-an-ajax-autocomplete-for-a-search-input",
+    "title": "How To Make An Ajax Autocomplete For A Search Input",
+    "excerpt": "Learn how to make a simple AJAX-loading dynamic...",
+    "content": "In 2008, Google officially released autocomplete and forever...",
+    "author": {
+      "id": 3,
+      "name": "Dean Papastrat",
+      "picture_url": "http://cdn.webcode.how/3ijofscior.jpg"
+    }
+    "prerequisite_articles": [
+      {
+        "id": 2,
+        "excerpt": "Learn how to use the HTML input element.",
+        "title": "How to Make an Input Element",
+        "url": "http://webcode.how/how-to-make-an-html-input-element",
+        "website_name": "WebCode.How"
+      }
+    ]
+    "further_reading_articles": [
+      {
+        "id": null,
+        "excerpt": "Learn how to make native dropdowns using the new HTML5 datalist element.",
+        "title": "Creating Autocomplete Dropdowns with the Datalist Element",
+        "url": "http://blog.teamtreehouse.com/creating-autocomplete-dropdowns-datalist-element",
+        "website_name": "Treehouse Blog"
+      }
+    ]
+  }
+]
+```
+
+This endpoint retrieves all articles, ordered by the date t.
+
+### HTTP Request
+
+`GET http://api.webcode.how/articles`
